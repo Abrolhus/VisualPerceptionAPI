@@ -16,7 +16,7 @@ int main(int argc, const char** argv)
 
     Mat clusteredImg, clusters;
 
-    img_proc::clustering(img, clusteredImg, clusters);
+    img_proc::clustering(img, clusteredImg, clusters, 10, 10);
     imshow("img", img);
     imshow("clusteredImg", clusteredImg);
     Mat clusterse;

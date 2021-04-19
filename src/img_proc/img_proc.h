@@ -28,5 +28,15 @@ namespace img_proc {
      */
     void clustering(cv::Mat& src, cv::Mat& dst, cv::Mat& clusters, int xjump=5, int yjump=5);
     // void simpleClustering(cv::Mat&, std::vector<unsigned short>, std::vector<cv::Vec3b> refTable);
+    /** Returns a rectangular region of a image.
+     * Given a x,y, width and height, the function returns the corresponding part in the src image.
+     * @param src Source image
+     * @param roi Destination image
+     * @param x X coordinate of the starting point
+     * @param y Y coordinate of the starting point
+     * @param width Width of the rectangle
+     * @param height Height of the rectangle
+     */
+    void getRoi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height);
 }
 #endif

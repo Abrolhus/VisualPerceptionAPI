@@ -1,0 +1,2 @@
+/usr/bin/ar qc libimg_proc_lib.a CMakeFiles/img_proc_lib.dir/img_proc.cpp.o
+/usr/bin/ranlib libimg_proc_lib.a

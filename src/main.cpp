@@ -15,9 +15,12 @@ int main(int argc, const char** argv)
     Mat img = imread(argv[1]);
 
     Mat clusteredImg, clusters;
+    Mat roi;
 
     img_proc::clustering(img, clusteredImg, clusters, 10, 10);
+    img_proc::getRoi(img, roi, 100, 100, 200, 200);
     imshow("img", img);
+    imshow("ROI: ", roi);
     imshow("clusteredImg", clusteredImg);
     Mat clusterse;
     cv::resize(clusters, clusterse, cv::Size(), 5, 5);

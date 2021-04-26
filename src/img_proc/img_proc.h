@@ -4,6 +4,9 @@
 #include <opencv2/core.hpp>
 #include <vector>
 
+#define IM_MEDIAN 1
+#define IM_MEAN 2
+
 /** A namespace with various image processing functions.
  * A longer description of the namespace
  */
@@ -25,8 +28,9 @@ namespace img_proc {
      * @param clusters Destination matrix ("Pixelated" Image)
      * @param xjump steps in x direction
      * @param yjump steps in y direction
+     * @param method method used to get the representing color of each region
      */
-    void clustering(cv::Mat& src, cv::Mat& dst, cv::Mat& clusters, int xjump=5, int yjump=5);
+    void clustering(cv::Mat& src, cv::Mat& dst, cv::Mat& clusters, int xjump=5, int yjump=5, int method= IM_MEDIAN);
     // void simpleClustering(cv::Mat&, std::vector<unsigned short>, std::vector<cv::Vec3b> refTable);
     /** Returns a rectangular region of a image.
      * Given a x,y, width and height, the function returns the corresponding part in the src image.

@@ -10,38 +10,28 @@ using namespace std;
 
 int main(int argc, const char** argv)
 {
-    std::cout << "Hello World" << " " << img_proc::somar(9, 4) << std::endl;
-    std::cout << "Hello arquivo local:"
-              << " " << somar(9, 4) << std::endl;
     Mat img = imread(argv[1]);
-
     Mat clusteredImg, clusters;
-    Mat roi;
-    vector<uint8_t> LUT(256*256*256, 0);
-    file_proc::getColorClusters("clust.txt",  LUT);
+    //vector<uint8_t> LUT(256*256*256, 0);
+    // file_proc::getColorClusters("clust.txt",  LUT);
     cout << "vai" <<endl;
     int count=0;
-    for(int i = 0; i < LUT.size(); i++){
-        if(LUT[i] == FIELD){
-            cout << hex << i << ", "; // all values are in BGR! (https://wamingo.net/rgbbgr/ -> BGR visualizer)
-        }
-    }
-    cout << endl;
+    //for(int i = 0; i < LUT.size(); i++){
+        //if(LUT[i] == FIELD){
+            //cout << hex << i << ", "; // all values are in BGR! (https://wamingo.net/rgbbgr/ -> BGR visualizer)
+        //}
+    //}
+    // cout << endl;
 
     ImageSegmenter ImSeg;
     // Mat_<ImageRegion> model;
     vector<vector<ImageRegion>> model(img.rows/5, vector<ImageRegion>(img.cols/5, ImageRegion()));
     // model = cv::Mat_<ImageRegion>(img.rows/5, img.cols/5);
-    ImSeg.segmentImage(img, clusteredImg, model, LUT, 5, 5);
+    // ImSeg.segmentImage(img, clusteredImg, model, LUT, 5, 5);
+    ImSeg.segmentImage(img, clusteredImg, model, 5, 5);
 
     imshow("img", img);
     imshow("clusteredImg Median", clusteredImg);
-    waitKey();
-    waitKey();
-    waitKey();
-    waitKey();
-    waitKey();
-    waitKey();
     waitKey();
     return 0;
 }

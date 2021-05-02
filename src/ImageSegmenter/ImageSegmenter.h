@@ -30,6 +30,8 @@ public:
      */
     void segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model, std::vector<uint8_t>& LUT, int xjump=5,
                       int yjump=5, int method=IM_MEDIAN);
+    void segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model, int xjump=5,
+                      int yjump=5, int method=IM_MEDIAN);
     /** Labels one single Image segment/region
      *
      * @param segment region of the image.

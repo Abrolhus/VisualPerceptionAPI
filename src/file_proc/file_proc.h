@@ -15,7 +15,7 @@ namespace file_proc
  * @param fileName
  * @param LUT
  */
-void getColorClusters(std::string fileName, std::vector<unsigned char>& LUT);
+void getColorClusters(std::string fileName, std::vector<uint8_t>& LUT);
 
 }
 #endif

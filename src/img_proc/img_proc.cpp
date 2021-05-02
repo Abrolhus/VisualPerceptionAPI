@@ -3,6 +3,8 @@
 #include <iostream>
 #include <exception>
 #include <algorithm>
+#define IM_MEDIAN 0
+#define IM_MEAN 1
 struct {
     bool operator()(cv::Vec3b a, cv::Vec3b b) const { return a[2] < b[2]; }
 } greaterRed;

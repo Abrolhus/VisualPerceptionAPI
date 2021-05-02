@@ -3,6 +3,7 @@
 #include "dummy.h"
 #include "img_proc/img_proc.h"
 #include "file_proc/file_proc.h"
+#include "ImageSegmenter/ImageSegmenter.h"
 
 using namespace cv;
 using namespace std;
@@ -16,27 +17,31 @@ int main(int argc, const char** argv)
 
     Mat clusteredImg, clusters;
     Mat roi;
-    vector<unsigned char> clusteredColors(256*256*256);
-    file_proc::getColorClusters("../testeClustering.txt",  clusteredColors);
+    vector<uint8_t> LUT(256*256*256, 0);
+    file_proc::getColorClusters("clust.txt",  LUT);
     cout << "vai" <<endl;
-    for(int i = 0; i < clusteredColors.size(); i++){
-        if(clusteredColors[i] == 1){
-            cout << i << ", ";
+    int count=0;
+    for(int i = 0; i < LUT.size(); i++){
+        if(LUT[i] == FIELD){
+            cout << hex << i << ", "; // all values are in BGR! (https://wamingo.net/rgbbgr/ -> BGR visualizer)
         }
     }
+    cout << endl;
 
+    ImageSegmenter ImSeg;
+    // Mat_<ImageRegion> model;
+    vector<vector<ImageRegion>> model(img.rows/5, vector<ImageRegion>(img.cols/5, ImageRegion()));
+    // model = cv::Mat_<ImageRegion>(img.rows/5, img.cols/5);
+    ImSeg.segmentImage(img, clusteredImg, model, LUT, 5, 5);
 
-    img_proc::clustering(img, clusteredImg, clusters, 10, 10, IM_MEDIAN);
-    Mat clusteredImg2;
-    img_proc::clustering(img, clusteredImg2, clusters, 10, 10, IM_MEAN);
-    img_proc::getRoi(img, roi, 100, 100, 200, 200);
     imshow("img", img);
-    imshow("ROI: ", roi);
     imshow("clusteredImg Median", clusteredImg);
-    imshow("clusteredImg Mean", clusteredImg2);
-    Mat clusterse;
-    cv::resize(clusters, clusterse, cv::Size(), 5, 5);
-    imshow("clusters", clusterse);
+    waitKey();
+    waitKey();
+    waitKey();
+    waitKey();
+    waitKey();
+    waitKey();
     waitKey();
     return 0;
 }

@@ -1,4 +1,4 @@
-#include "ImageSegmenter.h"
+#include "Image_Segmenter.h"
 #include "opencv2/core/core.hpp"
 #include <exception>
 #include <iostream>
@@ -12,18 +12,18 @@ struct {
     bool operator()(cv::Vec3b a, cv::Vec3b b) const { return a[0] < b[0]; }
 } greaterBlue;
 
-ImageSegmenter::ImageSegmenter()
+Image_Segmenter::Image_Segmenter()
 {
 
 }
-void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model, std::vector<uint8_t>& LUT,
+void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model, std::vector<uint8_t>& LUT,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
     assert(src.rows % yjump == 0 && src.cols % xjump == 0);
-    //model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump, new ImageRegion());
-    // model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump );
-    // model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump, 10);
+    //model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump, new Image_Region());
+    // model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump );
+    // model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump, 10);
 
     // note that wont work if xjump and yjump are not multipples of
                                     // the respective image dimensions // TODO(Abreu): add assert
@@ -63,15 +63,15 @@ void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector
                 sample[2] = allValues.at(allValues.size() / 2)[2];
             }
             // std::cout << sample[0] << " uai";
-            // model.at<ImageRegion>(j, i) = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
-            // std::cout << model(j, i).color; //= ImageRegion();
+            // model.at<Image_Region>(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
+            // std::cout << model(j, i).color; //= Image_Region();
 
             // std::cout << "vai" << std::endl;
-            //auto* aux = new ImageRegion(i,j,xjump,yjump,cv::Vec3b{0,0,0},UNKNOWN);
-            // model(j, i) = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
+            //auto* aux = new Image_Region(i,j,xjump,yjump,cv::Vec3b{0,0,0},UNKNOWN);
+            // model(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
             // model(j,i) = *aux;
-            // model(j,i) = ImageRegion();
-            model[j][i] = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
+            // model(j,i) = Image_Region();
+            model[j][i] = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
 
             label_image_segment(model[j][i], LUT);
             for (int li = 0; li < xjump; li++)
@@ -87,14 +87,14 @@ void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector
         }
     }
 }
-void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model,
+void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
     assert(src.rows % yjump == 0 && src.cols % xjump == 0);
-    //model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump, new ImageRegion());
-    // model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump );
-    // model = cv::Mat_<ImageRegion>(src.rows/yjump, src.cols/xjump, 10);
+    //model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump, new Image_Region());
+    // model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump );
+    // model = cv::Mat_<Image_Region>(src.rows/yjump, src.cols/xjump, 10);
 
     // note that wont work if xjump and yjump are not multipples of
     // the respective image dimensions // TODO(Abreu): add assert
@@ -134,15 +134,15 @@ void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector
                 sample[2] = allValues.at(allValues.size() / 2)[2];
             }
             // std::cout << sample[0] << " uai";
-            // model.at<ImageRegion>(j, i) = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
-            // std::cout << model(j, i).color; //= ImageRegion();
+            // model.at<Image_Region>(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
+            // std::cout << model(j, i).color; //= Image_Region();
 
             // std::cout << "vai" << std::endl;
-            //auto* aux = new ImageRegion(i,j,xjump,yjump,cv::Vec3b{0,0,0},UNKNOWN);
-            // model(j, i) = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
+            //auto* aux = new Image_Region(i,j,xjump,yjump,cv::Vec3b{0,0,0},UNKNOWN);
+            // model(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
             // model(j,i) = *aux;
-            // model(j,i) = ImageRegion();
-            model[j][i] = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
+            // model(j,i) = Image_Region();
+            model[j][i] = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
 
             for (int li = 0; li < xjump; li++)
             {
@@ -157,7 +157,7 @@ void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector
         }
     }
 }
-void ImageSegmenter::label_image_segment(ImageRegion& segment, std::vector<uint8_t>& LUT)
+void Image_Segmenter::label_image_segment(Image_Region& segment, std::vector<uint8_t>& LUT)
 {
     assert(LUT.size() == 256*256*256);
     // std::cout << "ai ai ai " << std::endl;

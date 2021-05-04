@@ -1,9 +1,9 @@
+#include "ImageSegmenter/Image_Segmenter.h"
+#include "dummy.h"
+#include "file_proc/file_proc.h"
+#include "img_proc/img_proc.h"
 #include "opencv2/opencv.hpp"
 #include <iostream>
-#include "dummy.h"
-#include "img_proc/img_proc.h"
-#include "file_proc/file_proc.h"
-#include "ImageSegmenter/ImageSegmenter.h"
 
 using namespace cv;
 using namespace std;
@@ -13,7 +13,7 @@ int main(int argc, const char** argv)
     Mat img = imread(argv[1]);
     Mat clusteredImg, clusters;
     //vector<uint8_t> LUT(256*256*256, 0);
-    // file_proc::getColorClusters("clust.txt",  LUT);
+    // file_proc::get_color_clusters("clust.txt",  LUT);
     cout << "vai" <<endl;
     int count=0;
     //for(int i = 0; i < LUT.size(); i++){
@@ -23,12 +23,12 @@ int main(int argc, const char** argv)
     //}
     // cout << endl;
 
-    ImageSegmenter ImSeg;
-    // Mat_<ImageRegion> model;
-    vector<vector<ImageRegion>> model(img.rows/5, vector<ImageRegion>(img.cols/5, ImageRegion()));
-    // model = cv::Mat_<ImageRegion>(img.rows/5, img.cols/5);
-    // ImSeg.segmentImage(img, clusteredImg, model, LUT, 5, 5);
-    ImSeg.segmentImage(img, clusteredImg, model, 5, 5);
+    Image_Segmenter ImSeg;
+    // Mat_<Image_Region> model;
+    vector<vector<Image_Region>> model(img.rows/5, vector<Image_Region>(img.cols/5, Image_Region()));
+    // model = cv::Mat_<Image_Region>(img.rows/5, img.cols/5);
+    // ImSeg.segment_image(img, clusteredImg, model, LUT, 5, 5);
+    ImSeg.segment_image(img, clusteredImg, model, 5, 5);
 
     imshow("img", img);
     imshow("clusteredImg Median", clusteredImg);

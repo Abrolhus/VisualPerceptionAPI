@@ -3,11 +3,11 @@
 #include <ios>
 #include <stdexcept>
 // #include <iomanip>
-#define GREEN 1 // TDOD(Abreu): use ImageSegmenter`s LUT;
+#define GREEN 1 // TDOD(Abreu): use Image_Segmenter`s LUT;
 #define NONE 0
 namespace file_proc
 {
-void getColorClusters(const std::string fileName, std::vector<uint8_t>& LUT)
+void get_color_clusters(const std::string file_name, std::vector<uint8_t>& LUT)
 {
     if (LUT.size() < 256 * 256 * 256)
     {
@@ -15,17 +15,17 @@ void getColorClusters(const std::string fileName, std::vector<uint8_t>& LUT)
     }
     for (int i = 0; i < 256 * 256 * 256; i++) { LUT[i] = NONE; }
     std::string line;
-    std::ifstream inFile(fileName.c_str(), std::ios::in);
+    std::ifstream inFile(file_name.c_str(), std::ios::in);
     int aux;
     int count=0;
     if (inFile)
     {
         while (getline(inFile, line))
         {
-            std::istringstream actualColor(line);
-            actualColor >> aux;
+            std::istringstream actual_color(line);
+            actual_color >> aux;
             LUT[aux] = GREEN;
-            actualColor.str("");
+            actual_color.str("");
             count++;
         }
         std::cout << "LUT 1s: " << count << std::endl;

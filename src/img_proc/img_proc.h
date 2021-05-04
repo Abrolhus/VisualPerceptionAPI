@@ -4,34 +4,10 @@
 #include <opencv2/core.hpp>
 #include <vector>
 
-// #define IM_MEDIAN 1
-// #define IM_MEAN 2
-
 /** A namespace with various image processing functions.
- * A longer description of the namespace
+ *
  */
 namespace img_proc {
-    /** A simple sum functions.
-     * Created for testing
-     * @param a First number
-     * @param b Second number
-     * @return Sum of both numbers
-     */
-    int somar(int a, int b);
-
-    /** Segments the image into smaller regions with the same dimensions. Each region is represented by the accent color of its pixels.
-     * The resulting image is a pixelated version of the input.
-     * Work in Progress
-     *
-     * @param src input image
-     * @param dst Destination image (Debug)
-     * @param clusters Destination matrix ("Pixelated" Image)
-     * @param xjump steps in x direction
-     * @param yjump steps in y direction
-     * @param method method used to get the representing color of each region
-     */
-    // void clustering(cv::Mat& src, cv::Mat& dst, cv::Mat& clusters, int xjump=5, int yjump=5, int method= IM_MEDIAN);
-    // void simpleClustering(cv::Mat&, std::vector<unsigned short>, std::vector<cv::Vec3b> refTable);
     /** Returns a rectangular region of a image.
      * Given a x,y, width and height, the function returns the corresponding part in the src image.
      * @param src Source image
@@ -41,6 +17,6 @@ namespace img_proc {
      * @param width Width of the rectangle
      * @param height Height of the rectangle
      */
-    void getRoi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height);
+    void get_roi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height);
 }
 #endif

@@ -16,7 +16,7 @@ ImageSegmenter::ImageSegmenter()
 {
 
 }
-void ImageSegmenter::segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model, std::vector<uint8_t>& LUT,
+void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model, std::vector<uint8_t>& LUT,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
@@ -73,7 +73,7 @@ void ImageSegmenter::segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<
             // model(j,i) = ImageRegion();
             model[j][i] = ImageRegion(i, j, xjump, yjump, sample, UNKNOWN);
 
-            labelImageSegment(model[j][i], LUT);
+            label_image_segment(model[j][i], LUT);
             for (int li = 0; li < xjump; li++)
             {
                 for (int lj = 0; lj < yjump; lj++)
@@ -87,7 +87,7 @@ void ImageSegmenter::segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<
         }
     }
 }
-void ImageSegmenter::segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model,
+void ImageSegmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<ImageRegion>> model,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
@@ -157,7 +157,7 @@ void ImageSegmenter::segmentImage(const cv::Mat& src, cv::Mat& dst, std::vector<
         }
     }
 }
-void ImageSegmenter::labelImageSegment(ImageRegion& segment, std::vector<uint8_t>& LUT)
+void ImageSegmenter::label_image_segment(ImageRegion& segment, std::vector<uint8_t>& LUT)
 {
     assert(LUT.size() == 256*256*256);
     // std::cout << "ai ai ai " << std::endl;

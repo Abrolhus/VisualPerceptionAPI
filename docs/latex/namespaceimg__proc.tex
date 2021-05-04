@@ -1,0 +1,49 @@
+\hypertarget{namespaceimg__proc}{}\section{img\+\_\+proc Namespace Reference}
+\label{namespaceimg__proc}\index{img\+\_\+proc@{img\+\_\+proc}}
+
+
+A namespace with various image processing functions.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceimg__proc_ade055a73f7f4952c3066968b515b27c6}\label{namespaceimg__proc_ade055a73f7f4952c3066968b515b27c6}} 
+int {\bfseries somar} (int a, int b)
+\item 
+\mbox{\Hypertarget{namespaceimg__proc_ad757b946454a5f983296e156ce13a33f}\label{namespaceimg__proc_ad757b946454a5f983296e156ce13a33f}} 
+void {\bfseries clustering} (cv\+::\+Mat \&src, cv\+::\+Mat \&dst, cv\+::\+Mat \&model, int xjump, int yjump, int method)
+\item 
+void \hyperlink{namespaceimg__proc_acfa08d173c5f86a504cb5933a3fe74d0}{get\+\_\+roi} (cv\+::\+Mat \&src, cv\+::\+Mat \&roi, int x, int y, int width, int height)
+\begin{DoxyCompactList}\small\item\em Returns a rectangular region of a image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A namespace with various image processing functions. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceimg__proc_acfa08d173c5f86a504cb5933a3fe74d0}\label{namespaceimg__proc_acfa08d173c5f86a504cb5933a3fe74d0}} 
+\index{img\+\_\+proc@{img\+\_\+proc}!get\+\_\+roi@{get\+\_\+roi}}
+\index{get\+\_\+roi@{get\+\_\+roi}!img\+\_\+proc@{img\+\_\+proc}}
+\subsubsection{\texorpdfstring{get\+\_\+roi()}{get\_roi()}}
+{\footnotesize\ttfamily void img\+\_\+proc\+::get\+\_\+roi (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{src,  }\item[{cv\+::\+Mat \&}]{roi,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Returns a rectangular region of a image. 
+
+Given a x,y, width and height, the function returns the corresponding part in the src image. 
+\begin{DoxyParams}{Parameters}
+{\em src} & Source image \\
+\hline
+{\em roi} & Destination image \\
+\hline
+{\em x} & X coordinate of the starting point \\
+\hline
+{\em y} & Y coordinate of the starting point \\
+\hline
+{\em width} & Width of the rectangle \\
+\hline
+{\em height} & Height of the rectangle \\
+\hline
+\end{DoxyParams}

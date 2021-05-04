@@ -1,0 +1,75 @@
+\hypertarget{class_image___segmenter}{}\section{Image\+\_\+\+Segmenter Class Reference}
+\label{class_image___segmenter}\index{Image\+\_\+\+Segmenter@{Image\+\_\+\+Segmenter}}
+
+
+Responsible for transforming images into small matrices of Regions.  
+
+
+
+
+{\ttfamily \#include $<$Image\+\_\+\+Segmenter.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_image___segmenter_a870ea17617700926ae337d2f93465393}{segment\+\_\+image} (const cv\+::\+Mat \&src, cv\+::\+Mat \&dst, std\+::vector$<$ std\+::vector$<$ \hyperlink{class_image___region}{Image\+\_\+\+Region} $>$$>$ model, std\+::vector$<$ uint8\+\_\+t $>$ \&L\+UT, int xjump=5, int yjump=5, int method=I\+M\+\_\+\+M\+E\+D\+I\+AN)
+\begin{DoxyCompactList}\small\item\em Segments the image into smaller regions with the same dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_image___segmenter_acbf4042bec4d7eb0a36114db5abd5cf9}\label{class_image___segmenter_acbf4042bec4d7eb0a36114db5abd5cf9}} 
+void {\bfseries segment\+\_\+image} (const cv\+::\+Mat \&src, cv\+::\+Mat \&dst, std\+::vector$<$ std\+::vector$<$ \hyperlink{class_image___region}{Image\+\_\+\+Region} $>$$>$ model, int xjump=5, int yjump=5, int method=I\+M\+\_\+\+M\+E\+D\+I\+AN)
+\item 
+void \hyperlink{class_image___segmenter_aee5692fbdcf547fa9ac5e2fa3470adef}{label\+\_\+image\+\_\+segment} (\hyperlink{class_image___region}{Image\+\_\+\+Region} \&segment, std\+::vector$<$ uint8\+\_\+t $>$ \&L\+UT)
+\begin{DoxyCompactList}\small\item\em Labels one single Image segment/region. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Responsible for transforming images into small matrices of Regions. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_image___segmenter_aee5692fbdcf547fa9ac5e2fa3470adef}\label{class_image___segmenter_aee5692fbdcf547fa9ac5e2fa3470adef}} 
+\index{Image\+\_\+\+Segmenter@{Image\+\_\+\+Segmenter}!label\+\_\+image\+\_\+segment@{label\+\_\+image\+\_\+segment}}
+\index{label\+\_\+image\+\_\+segment@{label\+\_\+image\+\_\+segment}!Image\+\_\+\+Segmenter@{Image\+\_\+\+Segmenter}}
+\subsubsection{\texorpdfstring{label\+\_\+image\+\_\+segment()}{label\_image\_segment()}}
+{\footnotesize\ttfamily void Image\+\_\+\+Segmenter\+::label\+\_\+image\+\_\+segment (\begin{DoxyParamCaption}\item[{\hyperlink{class_image___region}{Image\+\_\+\+Region} \&}]{segment,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{L\+UT }\end{DoxyParamCaption})}
+
+
+
+Labels one single Image segment/region. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em segment} & region of the image. \\
+\hline
+{\em L\+UT} & Look-\/up Table. Each key (vector position) represents a R\+GB color and each value its label. e.\+i position 156700 represents (255, 0, 100) and its value is 1. So if the region has this color value, it will be labeled as 1 (F\+I\+E\+LD) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_image___segmenter_a870ea17617700926ae337d2f93465393}\label{class_image___segmenter_a870ea17617700926ae337d2f93465393}} 
+\index{Image\+\_\+\+Segmenter@{Image\+\_\+\+Segmenter}!segment\+\_\+image@{segment\+\_\+image}}
+\index{segment\+\_\+image@{segment\+\_\+image}!Image\+\_\+\+Segmenter@{Image\+\_\+\+Segmenter}}
+\subsubsection{\texorpdfstring{segment\+\_\+image()}{segment\_image()}}
+{\footnotesize\ttfamily void Image\+\_\+\+Segmenter\+::segment\+\_\+image (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{src,  }\item[{cv\+::\+Mat \&}]{dst,  }\item[{std\+::vector$<$ std\+::vector$<$ \hyperlink{class_image___region}{Image\+\_\+\+Region} $>$$>$}]{model,  }\item[{std\+::vector$<$ uint8\+\_\+t $>$ \&}]{L\+UT,  }\item[{int}]{xjump = {\ttfamily 5},  }\item[{int}]{yjump = {\ttfamily 5},  }\item[{int}]{method = {\ttfamily IM\+\_\+MEDIAN} }\end{DoxyParamCaption})}
+
+
+
+Segments the image into smaller regions with the same dimensions. 
+
+Each region is represented by the accent color of its pixels. The resulting image is a pixelated version of the input. Work in Progress
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em src\mbox{[}} & input image \\
+\hline
+\mbox{\tt out}  & {\em dst} & Destination image (Debug) \\
+\hline
+\mbox{\tt out}  & {\em model} & matrix of regions \\
+\hline
+ & {\em xjump} & steps in x direction \\
+\hline
+ & {\em yjump} & steps in y direction \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/abrolhus/\+Rinobot/\+Projects/\+Visual\+Perception\+A\+P\+I/src/\+Image\+Segmenter/Image\+\_\+\+Segmenter.\+h\item 
+/home/abrolhus/\+Rinobot/\+Projects/\+Visual\+Perception\+A\+P\+I/src/\+Image\+Segmenter/Image\+\_\+\+Segmenter.\+cpp\end{DoxyCompactItemize}

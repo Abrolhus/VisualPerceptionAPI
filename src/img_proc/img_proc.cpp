@@ -67,7 +67,7 @@ void clustering(cv::Mat& src, cv::Mat& dst, cv::Mat& model, int xjump, int yjump
         }
     }
 }
-void getRoi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height)
+void get_roi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height)
 {
     cv::Rect region(x, y, width, height);
     cv::Rect image(0, 0, src.cols, src.rows);

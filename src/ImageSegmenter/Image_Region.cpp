@@ -2,9 +2,9 @@
 // Created by abrolhus on 26/04/2021.
 //
 
-#include "ImageRegion.h"
+#include "Image_Region.h"
 
-ImageRegion::ImageRegion(int x, int y, int w, int h, cv::Vec3b color, uint8_t label){
+Image_Region::Image_Region(int x, int y, int w, int h, cv::Vec3b color, uint8_t label){
     this->x = x;
     this->y = y;
     this->w = w;
@@ -12,7 +12,7 @@ ImageRegion::ImageRegion(int x, int y, int w, int h, cv::Vec3b color, uint8_t la
     this->color = color;
     this->label = label;
 }
-ImageRegion::ImageRegion()
+Image_Region::Image_Region()
 {
     this->x = 0;
     this->y = 0;
@@ -21,7 +21,7 @@ ImageRegion::ImageRegion()
     this->color = cv::Vec3b{0,0,0};
     this->label = 0;
 }
-ImageRegion& ImageRegion::operator=(const ImageRegion& other) noexcept {
+Image_Region& Image_Region::operator=(const Image_Region& other) noexcept {
     if (this == &other) { return *this; }
     this->color = other.color;
     this->x = other.x;

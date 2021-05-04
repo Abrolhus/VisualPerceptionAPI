@@ -12,10 +12,10 @@ namespace file_proc
 {
 /** Creates a Look-up Table that has as keys the color value of each RGB color and as value a int (short) corresponding to its assigned cluster.
  * All colors (int) in the file are assigned to the GREEN cluster. All other colors are assigned to the NONE cluster.
- * @param fileName
+ * @param file_name
  * @param LUT
  */
-void getColorClusters(std::string fileName, std::vector<uint8_t>& LUT);
+void get_color_clusters(const std::string file_name, std::vector<uint8_t>& LUT);
 
 }
 #endif

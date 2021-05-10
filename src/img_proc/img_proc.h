@@ -18,5 +18,6 @@ namespace img_proc {
      * @param height Height of the rectangle
      */
     void get_roi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height);
+    cv::Vec3b bgr_to_hsv(cv::Vec3b);
 }
 #endif

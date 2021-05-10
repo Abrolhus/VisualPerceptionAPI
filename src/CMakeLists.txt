@@ -7,7 +7,8 @@ set(SOURCES
     dummy.cpp
     )
 add_executable(run main.cpp ${SOURCES})
-target_link_libraries(run PUBLIC ${OpenCV_LIBS})
-target_link_libraries(run PRIVATE ${IMG_PROC_LIB})
-target_link_libraries(run PRIVATE ${FILE_PROC_LIB})
-target_link_libraries(run PRIVATE ${IMAGE_SEGMENTER_LIB})
+target_link_libraries(run
+        ${OpenCV_LIBS}
+        ${IMG_PROC_LIB}
+        ${FILE_PROC_LIB}
+        ${IMAGE_SEGMENTER_LIB})

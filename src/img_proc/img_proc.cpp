@@ -82,4 +82,11 @@ void get_roi(cv::Mat& src, cv::Mat& roi, int x, int y, int width, int height)
         throw std::invalid_argument("Region not within image boundaries");
     }
 }
+cv::Vec3b bgr_to_hsv(cv::Vec3b color_bgr){
+    // TODO(Abreu): find better method. http://coecsl.ece.illinois.edu/ge423/spring05/group8/finalproject/hsv_writeup.pdf , https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+    cv::Mat singleElement(1, 1, CV_8UC3, cv::Scalar(color_bgr[0], color_bgr[1], color_bgr[2]));
+    cv::Mat hsv;
+    cv::cvtColor(singleElement, hsv, CV_BGR2HSV);
+    return hsv.at<cv::Vec3b>(0,0);
+}
 }; // namespace img_proc

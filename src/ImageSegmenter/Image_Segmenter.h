@@ -5,9 +5,6 @@
 #include <opencv2/imgproc.hpp>
 #include <vector>
 
-#define UNKNOWN 0
-#define FIELD 1
-#define BACKGROUND 2
 
 #define IM_MEDIAN 0
 #define IM_MEAN 1
@@ -28,9 +25,9 @@ public:
      * @param xjump steps in x direction
      * @param yjump steps in y direction
      */
-    void segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model, std::vector<uint8_t>& LUT, int xjump= 5,
+    void segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>>& model, std::vector<uint8_t>& LUT, int xjump= 5,
                       int yjump= 5, int method= IM_MEDIAN);
-    void segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model, int xjump= 5,
+    void segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>>& model, int xjump= 5,
                       int yjump= 5, int method= IM_MEDIAN);
     /** Labels one single Image segment/region
      *
@@ -38,5 +35,6 @@ public:
      * @param LUT Look-up Table. Each key (vector position) represents a RGB color and each value its label. e.i position 156700 represents (255, 0, 100) and its value is 1. So if the region has this color value, it will be labeled as 1 (FIELD)
      */
     void label_image_segment(Image_Region& segment, std::vector<uint8_t>& LUT);
+    cv::Vec3b bgr_to_hsv(cv::Vec3b);
 };
 #endif

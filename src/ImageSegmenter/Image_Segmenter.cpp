@@ -2,6 +2,8 @@
 #include "opencv2/core/core.hpp"
 #include <exception>
 #include <iostream>
+// #include "../img_proc/img_proc.h"
+#include "../img_proc/img_proc.h"
 struct {
     bool operator()(cv::Vec3b a, cv::Vec3b b) const { return a[2] < b[2]; }
 } greaterRed;
@@ -16,7 +18,7 @@ Image_Segmenter::Image_Segmenter()
 {
 
 }
-void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model, std::vector<uint8_t>& LUT,
+void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>>& model, std::vector<uint8_t>& LUT,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
@@ -71,7 +73,10 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
             // model(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
             // model(j,i) = *aux;
             // model(j,i) = Image_Region();
-            model[j][i] = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
+            cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
+            //cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
+
+            model[j][i] = Image_Region(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
 
             label_image_segment(model[j][i], LUT);
             for (int li = 0; li < xjump; li++)
@@ -87,7 +92,7 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
         }
     }
 }
-void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>> model,
+void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>>& model,
                                   int xjump, int yjump, int method)
 {
     src.copyTo(dst); // TODO(Abreu): delete this line
@@ -142,7 +147,10 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
             // model(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
             // model(j,i) = *aux;
             // model(j,i) = Image_Region();
-            model[j][i] = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
+            cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
+            //cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
+
+            model[j][i] = Image_Region(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
 
             for (int li = 0; li < xjump; li++)
             {
@@ -161,7 +169,14 @@ void Image_Segmenter::label_image_segment(Image_Region& segment, std::vector<uin
 {
     assert(LUT.size() == 256*256*256);
     // std::cout << "ai ai ai " << std::endl;
-    int color = (segment.color[0] << 16) | (segment.color[1] << 8) | segment.color[2];
+    int color = (segment.color_bgr[0] << 16) | (segment.color_bgr[1] << 8) | segment.color_bgr[2];
     assert(color < 256*256*256);
     segment.label = LUT.at(color); // using vector::at because it is safer (but quite slower) TODO(Abreu): use [] operator instead of at.
+}
+cv::Vec3b Image_Segmenter::bgr_to_hsv(cv::Vec3b color_bgr){
+    // TODO(Abreu): find better method. http://coecsl.ece.illinois.edu/ge423/spring05/group8/finalproject/hsv_writeup.pdf , https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+    cv::Mat singleElement(1, 1, CV_8UC3, cv::Scalar(color_bgr[0], color_bgr[1], color_bgr[2]));
+    cv::Mat hsv;
+    cv::cvtColor(singleElement, hsv, CV_BGR2HSV);
+    return hsv.at<cv::Vec3b>(0,0);
 }

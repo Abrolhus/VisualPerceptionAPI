@@ -4,12 +4,7 @@ set(SOURCES
         Image_Segmenter.cpp
         Image_Region.cpp
     )
-set(IMAGE_SEGMENTER_LIB ImageSegmenter_lib PARENT_SCOPE)
-add_library(ImageSegmenter_lib STATIC ${SOURCES})
-#target_include_directories(ImageSegmenter_lib PUBLIC ..)
-#add_dependencies(ImageSegmenter_lib ${IMG_PROC_LIB})
-#target_link_directories(ImageSegmenter_lib  PUBLIC ../img_proc)
-#message(teste ${IMG_PROC_LIB})
-#target_link_libraries(ImageSegmenter_lib ${IMG_PROC_LIB})
-#target_include_directories(ImageSegmenter_lib BEFORE PUBLIC ../img_proc)
+add_library(Image_Segmenter_lib STATIC ${SOURCES})
+target_link_libraries(Image_Segmenter_lib img_proc_lib)
+target_include_directories(Image_Segmenter_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..) # /src
 

@@ -1,8 +1,8 @@
-#include "ImageSegmenter/Image_Segmenter.h"
+#include <ImageSegmenter/Image_Segmenter.h>
 #include "dummy.h"
-#include "file_proc/file_proc.h"
-#include "img_proc/img_proc.h"
-#include "opencv2/opencv.hpp"
+#include <file_proc/file_proc.h>
+#include <img_proc/img_proc.h>
+#include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace cv;

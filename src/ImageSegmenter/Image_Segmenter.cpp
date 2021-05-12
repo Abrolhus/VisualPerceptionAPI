@@ -3,7 +3,7 @@
 #include <exception>
 #include <iostream>
 // #include "../img_proc/img_proc.h"
-#include "../img_proc/img_proc.h"
+#include <img_proc/img_proc.h>
 struct {
     bool operator()(cv::Vec3b a, cv::Vec3b b) const { return a[2] < b[2]; }
 } greaterRed;
@@ -14,10 +14,7 @@ struct {
     bool operator()(cv::Vec3b a, cv::Vec3b b) const { return a[0] < b[0]; }
 } greaterBlue;
 
-Image_Segmenter::Image_Segmenter()
-{
-
-}
+Image_Segmenter::Image_Segmenter() = default;
 void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vector<std::vector<Image_Region>>& model, std::vector<uint8_t>& LUT,
                                   int xjump, int yjump, int method)
 {
@@ -147,8 +144,8 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
             // model(j, i) = Image_Region(i, j, xjump, yjump, sample, UNKNOWN);
             // model(j,i) = *aux;
             // model(j,i) = Image_Region();
-            cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
-            //cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
+            // cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
+            cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
 
             model[j][i] = Image_Region(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
 

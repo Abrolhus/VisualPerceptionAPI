@@ -9,6 +9,6 @@ set(SOURCES
 add_executable(run main.cpp ${SOURCES})
 target_link_libraries(run
         ${OpenCV_LIBS}
-        ${IMG_PROC_LIB}
-        ${FILE_PROC_LIB}
-        ${IMAGE_SEGMENTER_LIB})
+        img_proc_lib
+        file_proc_lib
+        Image_Segmenter_lib)

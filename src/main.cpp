@@ -4,6 +4,7 @@
 #include <img_proc/img_proc.h>
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <field_color_detection/field_color_detector.h>
 
 using namespace cv;
 using namespace std;
@@ -30,8 +31,16 @@ int main(int argc, const char** argv)
     // ImSeg.segment_image(img, clusteredImg, model, LUT, 5, 5);
     ImSeg.segment_image(img, clusteredImg, model, 5, 5);
 
+    Mat copia = img.clone();
+
+    Field_color_detector* teste = new Field_color_detector();
+    teste->paintField(img);
+
+    // Valor de teste!
+    bool aa = teste->isField(img.at<Vec3b>(400, 400));
+
     imshow("img", img);
-    imshow("clusteredImg Median", clusteredImg);
+    // imshow("clusteredImg Median", clusteredImg);
     waitKey();
     return 0;
 }

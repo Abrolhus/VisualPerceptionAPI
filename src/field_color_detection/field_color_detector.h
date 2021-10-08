@@ -15,6 +15,7 @@ class Field_color_detector{
         bool isField(Vec3b pixel);
         Field_color_detector();
         ~Field_color_detector();
+        void paintNotField(Mat imgInput);
 };
 
 #endif

@@ -21,26 +21,32 @@ float Field_color_detector::getChromaticity(uchar channelColor, Vec3b color)
 }
 
 void Field_color_detector::paintField(Mat inputImg)
-{   
-    int cont; // Counts not green pixels in sequence 
+{
+    int cont; // Counts not green pixels in sequence
 
     Mat segmentedImg = inputImg.clone();
     bool paint = false;
-    for (size_t i = 0; i < inputImg.cols; i++){
+    for (size_t i = 0; i < inputImg.cols; i += 3)
+    {
         cont = 0;
-        for (size_t j = inputImg.rows; j > 0; j--){
+        for (size_t j = inputImg.rows; j > 0; j--)
+        {
             auto pixelColor = inputImg.at<Vec3b>(j, i);
-            if (isField(pixelColor)) { 
+            if (isField(pixelColor))
+            {
                 segmentedImg.at<Vec3b>(j, i) = {255, 0, 100};
                 cont = 0;
-            } else {
+            }
+            else
+            {
                 cont++;
             }
 
-            if(cont >= 10) { // Verificar valor
+            if (cont >= 10)
+            { // Verificar valor
                 break;
                 // int aux; // Count greens in sequence
-                
+
                 // for(int z = j; z > 0; z--){
                 //     pixelColor = inputImg.at<Vec3b>(j, i);
                 //     if (isField(pixelColor)){
@@ -64,14 +70,45 @@ void Field_color_detector::paintField(Mat inputImg)
     imshow("Painted Field", segmentedImg);
 }
 
-bool Field_color_detector::isField(Vec3b pixel){
+bool Field_color_detector::isField(Vec3b pixel)
+{
     if (getChromaticity(pixel[0], pixel) < BLUECHROMATICITYTHRESHOLD &&
         getChromaticity(pixel[2], pixel) < REDCHROMATICITYTHRESHOLD0 &&
-        getChromaticity(pixel[1], pixel) >= 0.38){ // Valor melhor?
-         return true;
+        getChromaticity(pixel[1], pixel) >= LOWERGREENCHROMATICITYTHRESHOLD)
+    { // Valor melhor?
+        return true;
     }
 
     return false;
+}
+
+void Field_color_detector::paintNotField(Mat inputImg)
+{
+    int cont; // Counts green pixels in sequence
+
+    Mat segmentedImg = inputImg.clone();
+    bool paint = false;
+    for (size_t i = 0; i < inputImg.cols; i+= 5)
+    {
+        cont = 0;
+        for (size_t j = 0; j < inputImg.rows; j++)
+        {
+            auto pixelColor = inputImg.at<Vec3b>(j, i);
+            if (!isField(pixelColor))
+            {
+                segmentedImg.at<Vec3b>(j, i) = {0, 0, 255};
+                cont = 0;
+            }
+            else
+            {
+                cont++;
+            }
+
+            if (cont > 5) { break; }
+        }
+    }
+
+    imshow("Painted Field", segmentedImg);
 }
 
 // for (size_t i = 0; i < inputImg.cols; i++)

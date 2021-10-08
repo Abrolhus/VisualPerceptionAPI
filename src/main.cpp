@@ -34,10 +34,7 @@ int main(int argc, const char** argv)
     Mat copia = img.clone();
 
     Field_color_detector* teste = new Field_color_detector();
-    teste->paintField(img);
-
-    // Valor de teste!
-    bool aa = teste->isField(img.at<Vec3b>(400, 400));
+    teste->paintNotField(img);
 
     imshow("img", img);
     // imshow("clusteredImg Median", clusteredImg);

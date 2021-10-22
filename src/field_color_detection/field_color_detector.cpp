@@ -20,51 +20,48 @@ float Field_color_detector::getChromaticity(uchar channelColor, Vec3b color)
     return channelColor / (float) (color[0] + color[1] + color[2]);
 }
 
-void Field_color_detector::paintField(Mat inputImg)
-{
+void Field_color_detector::paintField(Mat inputImg){
     int cont; // Counts not green pixels in sequence
+    int breakpoint = 3; // Breakpoint to the second for depending on j value
 
     Mat segmentedImg = inputImg.clone();
-    bool paint = false;
-    for (size_t i = 0; i < inputImg.cols; i += 3)
-    {
+    resize(segmentedImg, segmentedImg, Size(640, 480));
+
+    for (size_t i = 0; i < segmentedImg.cols; i += 5){
         cont = 0;
-        for (size_t j = inputImg.rows; j > 0; j--)
-        {
-            auto pixelColor = inputImg.at<Vec3b>(j, i);
-            if (isField(pixelColor))
-            {
+        breakpoint = 0;
+        for (size_t j = segmentedImg.rows; j > 0; j--){
+            auto pixelColor = segmentedImg.at<Vec3b>(j, i);
+            if (isField(pixelColor)){   
                 segmentedImg.at<Vec3b>(j, i) = {255, 0, 100};
                 cont = 0;
             }
-            else
-            {
+            else{
                 cont++;
             }
 
-            if (cont >= 10)
-            { // Verificar valor
-                break;
-                // int aux; // Count greens in sequence
-
-                // for(int z = j; z > 0; z--){
-                //     pixelColor = inputImg.at<Vec3b>(j, i);
-                //     if (isField(pixelColor)){
-                //         aux++;
-                //     } else {
-                //         aux = 0;
-                //     }
-
-                //     if(aux > 5){
-                //         paint = true;
-                //         break;
-                //     }
-                // }
-                // if(!paint){
-                //     cont = 0;
-                //     break;
-                // }
+            // Values need to be changed
+            if(j < inputImg.rows/8){
+                breakpoint = 3;
+            } else if(j < 2 * inputImg.rows/8){
+                breakpoint = 5;
+            } else if(j < 3 * inputImg.rows/8){
+                breakpoint = 8;
+            } else if(j < 4 * inputImg.rows/8){
+                breakpoint = 11;
+            } else if(j < 5 * inputImg.rows/8){
+                breakpoint = 14;
+            } else if(j < 6 * inputImg.rows/8){
+                breakpoint = 17;
+            } else if(j < 7 * inputImg.rows/8){
+                breakpoint = 20;
+            } else {
+                breakpoint = 25;
             }
+
+            if(cont > breakpoint) 
+                break;
+            
         }
     }
     imshow("Painted Field", segmentedImg);
@@ -88,7 +85,7 @@ void Field_color_detector::paintNotField(Mat inputImg)
 
     Mat segmentedImg = inputImg.clone();
     bool paint = false;
-    for (size_t i = 0; i < inputImg.cols; i+= 5)
+    for (size_t i = 0; i < inputImg.cols; i += 5)
     {
         cont = 0;
         for (size_t j = 0; j < inputImg.rows; j++)

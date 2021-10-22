@@ -10,34 +10,36 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, const char** argv)
-{
-    Mat img = imread(argv[1]);
-    Mat clusteredImg, clusters;
-    //vector<uint8_t> LUT(256*256*256, 0);
-    // file_proc::get_color_clusters("clust.txt",  LUT);
-    cout << "vai" <<endl;
-    int count=0;
-    //for(int i = 0; i < LUT.size(); i++){
-        //if(LUT[i] == FIELD){
-            //cout << hex << i << ", "; // all values are in BGR! (https://wamingo.net/rgbbgr/ -> BGR visualizer)
+{   
+    for(int i = 1; i <= argc; i++){
+        Mat img = imread(argv[i]);
+        Mat clusteredImg, clusters;
+        //vector<uint8_t> LUT(256*256*256, 0);
+        // file_proc::get_color_clusters("clust.txt",  LUT);
+        int count=0;
+        //for(int i = 0; i < LUT.size(); i++){
+            //if(LUT[i] == FIELD){
+                //cout << hex << i << ", "; // all values are in BGR! (https://wamingo.net/rgbbgr/ -> BGR visualizer)
+            //}
         //}
-    //}
-    // cout << endl;
+        // cout << endl;
 
-    Image_Segmenter ImSeg;
-    // Mat_<Image_Region> model;
-    vector<vector<Image_Region>> model(img.rows/5, vector<Image_Region>(img.cols/5, Image_Region()));
-    // model = cv::Mat_<Image_Region>(img.rows/5, img.cols/5);
-    // ImSeg.segment_image(img, clusteredImg, model, LUT, 5, 5);
-    ImSeg.segment_image(img, clusteredImg, model, 5, 5);
+        Image_Segmenter ImSeg;
+        // Mat_<Image_Region> model;
+        vector<vector<Image_Region>> model(img.rows/5, vector<Image_Region>(img.cols/5, Image_Region()));
+        // model = cv::Mat_<Image_Region>(img.rows/5, img.cols/5);
+        // ImSeg.segment_image(img, clusteredImg, model, LUT, 5, 5);
+        ImSeg.segment_image(img, clusteredImg, model, 5, 5);
 
-    Mat copia = img.clone();
+        Mat copia = img.clone();
 
-    Field_color_detector* teste = new Field_color_detector();
-    teste->paintNotField(img);
+        Field_color_detector* teste = new Field_color_detector();
+        teste->paintField(img);
+        // teste->paintNotField(img);
 
-    imshow("img", img);
-    // imshow("clusteredImg Median", clusteredImg);
-    waitKey();
+        imshow("img", img);
+        // imshow("clusteredImg Median", clusteredImg);
+        waitKey();
+    }
     return 0;
 }

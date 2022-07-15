@@ -12,6 +12,12 @@
 #define FIELD 1
 #define BACKGROUND 2
 
+enum class RegionLabel {
+    Field, 
+    Background, 
+    Unknown, 
+}
+
 /** Represents a retangular region of a image.
  *
  *
@@ -27,8 +33,8 @@ public:
     int y; //< y position of the upper-right corner
     int w; //< width of the rectangle
     int h; //< height of the rectangle
-    cv::Vec3b color_hsv;
-    cv::Vec3b color_bgr; //< representing color, generally the median of the colors.
+    // cv::Vec3b color_hsv;
+    cv::Vec3b color; //< representing color, generally the median of the colors.
     // Image_Region& operator=(const Image_Region& other) noexcept;
 };
 

@@ -4,7 +4,7 @@
 
 #include "Image_Region.h"
 
-Image_Region::Image_Region(int x, int y, int w, int h, cv::Vec3b color_bgr, RegionLabel label){
+ImageRegion::ImageRegion(int x, int y, int w, int h, const cv::Vec3b& color_bgr, RegionLabel label){
     this->x = x;
     this->y = y;
     this->w = w;
@@ -13,7 +13,7 @@ Image_Region::Image_Region(int x, int y, int w, int h, cv::Vec3b color_bgr, Regi
     this->label = label;
 }
 
-Image_Region::Image_Region()
+ImageRegion::ImageRegion()
 {
     this->x = 0;
     this->y = 0;

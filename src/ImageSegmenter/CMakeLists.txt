@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(image_segmenter)
 set(SOURCES
-        Image_Segmenter.cpp
         Image_Region.cpp
+        Segmented_Image.cpp
     )
 add_library(Image_Segmenter_lib STATIC ${SOURCES})
 target_link_libraries(Image_Segmenter_lib img_proc_lib)

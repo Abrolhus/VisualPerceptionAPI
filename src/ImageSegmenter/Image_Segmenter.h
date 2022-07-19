@@ -34,7 +34,7 @@ public:
      * @param segment region of the image.
      * @param LUT Look-up Table. Each key (vector position) represents a RGB color and each value its label. e.i position 156700 represents (255, 0, 100) and its value is 1. So if the region has this color value, it will be labeled as 1 (FIELD)
      */
-    void label_image_segment(Image_Region& segment, std::vector<uint8_t>& LUT);
+    void label_image_segment(ImageRegion& segment, std::vector<uint8_t>& LUT);
     cv::Vec3b bgr_to_hsv(cv::Vec3b);
 };
 #endif

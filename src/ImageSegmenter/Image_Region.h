@@ -8,27 +8,22 @@
 #include <cstdint>
 #include <opencv2/core/core.hpp>
 
-#define UNKNOWN 0
-#define FIELD 1
-#define BACKGROUND 2
-
 enum class RegionLabel {
     Field, 
     Background, 
     Unknown, 
-}
+};
 
 /** Represents a retangular region of a image.
  *
  *
  */
-class Image_Region
+class ImageRegion
 {
 public:
-    Image_Region(int x, int y, int w, int h, cv::Vec3b color, uint8_t label);
-    Image_Region(int x, int y, int w, int h, const cv::Vec3b& color_bgr, const cv::Vec3b& color_hsv, uint8_t label);
-    Image_Region(); // Default Constructor (for containers)
-    uint8_t label; //< FIELD, BACKGROUND, ... //< FIELD, BACKGROUND, UNKNOWN ...
+    ImageRegion(int x, int y, int w, int h, const cv::Vec3b& color, RegionLabel label);
+    ImageRegion(); // Default Constructor (for containers)
+    RegionLabel label; //< FIELD, BACKGROUND, ... //< FIELD, BACKGROUND, UNKNOWN ...
     int x; //< x position of the upper-right corner
     int y; //< y position of the upper-right corner
     int w; //< width of the rectangle

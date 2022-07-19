@@ -73,7 +73,7 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
             cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
             //cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
 
-            model[j][i] = Image_Region(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
+            model[j][i] = ImageRegion(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
 
             label_image_segment(model[j][i], LUT);
             for (int li = 0; li < xjump; li++)
@@ -147,7 +147,7 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
             // cv::Vec3b color_hsv = this->bgr_to_hsv(sample);
             cv::Vec3b color_hsv = img_proc::bgr_to_hsv(sample);
 
-            model[j][i] = Image_Region(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
+            model[j][i] = ImageRegion(i, j, xjump, yjump, sample, color_hsv, UNKNOWN);
 
             for (int li = 0; li < xjump; li++)
             {
@@ -162,7 +162,7 @@ void Image_Segmenter::segment_image(const cv::Mat& src, cv::Mat& dst, std::vecto
         }
     }
 }
-void Image_Segmenter::label_image_segment(Image_Region& segment, std::vector<uint8_t>& LUT)
+void Image_Segmenter::label_image_segment(ImageRegion& segment, std::vector<uint8_t>& LUT)
 {
     assert(LUT.size() == 256*256*256);
     // std::cout << "ai ai ai " << std::endl;

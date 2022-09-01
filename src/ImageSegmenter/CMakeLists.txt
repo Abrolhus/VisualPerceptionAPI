@@ -3,6 +3,9 @@ project(image_segmenter)
 set(SOURCES
         Image_Region.cpp
         Segmented_Image.cpp
+        field_border.cpp
+        ransac_test.cpp
+        ransac_line2d.cpp
     )
 add_library(Image_Segmenter_lib STATIC ${SOURCES})
 target_link_libraries(Image_Segmenter_lib img_proc_lib)

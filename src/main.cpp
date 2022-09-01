@@ -1,4 +1,6 @@
 #include <ImageSegmenter/Segmented_Image.h>
+#include <ImageSegmenter/field_border.h>
+#include <ImageSegmenter/ransac_test.h>
 #include "dummy.h"
 #include <file_proc/file_proc.h>
 #include <img_proc/img_proc.h>
@@ -10,10 +12,15 @@ using namespace std;
 
 int main(int argc, const char** argv)
 {
-    Mat img = imread(argv[1]);
-    SegmentedImage segmentedImage(img);
-    imshow("img", img);
-    segmentedImage.displaySegmentedImage();
-    waitKey();
+    for(int i = 1; i < argc; i++){
+        Mat img = imread(argv[i]);
+        SegmentedImage segmentedImage(img);
+        scanline(segmentedImage);
+        testLine2d(segmentedImage, img);
+        imshow("img", img);
+        segmentedImage.displaySegmentedImage();
+        segmentedImage.displaySegmentedImageRegions();
+        waitKey();
+    }
     return 0;
 }

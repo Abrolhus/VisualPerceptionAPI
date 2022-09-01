@@ -11,7 +11,8 @@
 enum class RegionLabel {
     Field, 
     Background, 
-    Unknown, 
+    Unknown,
+    Border
 };
 
 /** Represents a retangular region of a image.

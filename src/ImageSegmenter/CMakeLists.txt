@@ -6,6 +6,9 @@ set(SOURCES
         field_border.cpp
         ransac_test.cpp
         ransac_line2d.cpp
+        RelativeCoord.cpp
+        CartesianCoord.cpp
+        Math.cpp
     )
 add_library(Image_Segmenter_lib STATIC ${SOURCES})
 target_link_libraries(Image_Segmenter_lib img_proc_lib)

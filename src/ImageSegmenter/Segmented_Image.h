@@ -11,13 +11,17 @@
 class SegmentedImage
 {
 public:
+    SegmentedImage(const cv::Mat& image, float ystep, int xstep, bool upper_camera);
     SegmentedImage(cv::Mat& image);
     std::vector<std::vector<ImageRegion>>* regions;
     void displaySegmentedImage() const;
     void displaySegmentedImageRegions() const;
 private:
+    int width;
+    int height;
     int getWidth() const;
     int getHeight() const;
+    int horizon = 0;
     cv::Vec3b bgr_median(std::vector<cv::Vec3b>& colors);
 };
 #endif

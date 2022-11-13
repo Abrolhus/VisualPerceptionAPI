@@ -5,9 +5,9 @@ using namespace cv;
 
 const double UPPERGREENCHROMATICITYTHRESHOLD = 0.43;
 const double REDCHROMATICITYTHRESHOLD0       = 0.37;
-const double LOWERGREENCHROMATICITYTHRESHOLD = 0.4;
-const double BLUECHROMATICITYTHRESHOLD       = 0.38;
-// const double BLUECHROMATICITYTHRESHOLD    = 0.47;
+const double LOWERGREENCHROMATICITYTHRESHOLD = 0.37;
+// const double BLUECHROMATICITYTHRESHOLD       = 0.38;
+const double BLUECHROMATICITYTHRESHOLD    = 0.47;
 
 // Constructor
 Field_color_detector::Field_color_detector() {}

@@ -3,6 +3,6 @@
 
 #include "ransac2d.h"
 
-bool testLine2d(SegmentedImage& segImg, Mat& image);
+bool testLine2d(SegmentedImage& segImg, Mat& image, cv::Vec4d& output_line);
 
 #endif

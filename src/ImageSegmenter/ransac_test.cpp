@@ -5,8 +5,7 @@
 using namespace cv;
 using namespace std;
 
-
-bool testLine2d(SegmentedImage& segImg, Mat& image){
+bool testLine2d(SegmentedImage& segImg, Mat& image, cv::Vec4d& output_line){
 	std::vector<sac::Point2D> pCloud2D;
 
     for(const auto& line : *(segImg.regions)){
@@ -43,5 +42,6 @@ bool testLine2d(SegmentedImage& segImg, Mat& image){
 	cout << "Parameter of 2D line: < " << parameter.modelParam[0] << ", " <<
 		parameter.modelParam[1] << " >---< " << parameter.modelParam[2] << ", " <<
 		parameter.modelParam[3] << " > " << endl;
+	output_line = Vec4d{sp.x, sp.y, ep.x, ep.y};
 	return true;
 }

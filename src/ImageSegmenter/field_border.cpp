@@ -4,7 +4,7 @@
 #include "Segmented_Image.h"
 using namespace cv;
 using namespace std;
-const int NOT_FIELD_MAX = 5;
+const int NOT_FIELD_MAX = 15;
 
 void scanline(SegmentedImage& segImg){
     auto border = vector<cv::Point>(segImg.regions->at(0).size());
